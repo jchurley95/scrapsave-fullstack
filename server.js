@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-// const GamesController = require("./controllers/game");
+const UsersController = require("./controllers/user");
 
 
 mongoose.Promise = global.Promise;
@@ -22,11 +22,12 @@ connection.on('error', (err) => {
 
 app.use(bodyParser.json());
 
-// app.use("/api/game", GamesController);
+app.use('/api/user', UsersController);
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Welcome to Scrapsave!");
 });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log("App is listening on: " + PORT)});
+  console.log("App is listening on: " + PORT)
+});

@@ -50,14 +50,14 @@ const JHurleyUser = new User ({
     lastName: "Hurley",	
     username: 'JCHurley95',
     company: 'ScrewLooseCarpentry',
-    projects: [outdoorTable]
+    projects: [outdoorTableProject]
 });
 
 tableTopPiece1.save().then(() => console.log("tableTopPiece1 Saved!"));
 tableTopPiece2.save().then(() => console.log("tableTopPiece2 Saved!"));
 tableTopPiece3.save().then(() => console.log("tableTopPiece3 Saved!"));
 tableTopPiece3.save().then(() => console.log("tableTopSection Saved!"));
-outdoorTable.save().then(() => console.log("outdoorTableProject Saved!"));
-JHurley.save().then(() => console.log("JHurleyUser Saved!"));
+outdoorTableProject.save().then(() => console.log("outdoorTableProject Saved!"));
+JHurleyUser.save().then(() => console.log("JHurleyUser Saved!"));
 
 mongoose.connection.close();
