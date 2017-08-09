@@ -1,9 +1,9 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const UsersController = require("./controllers/user");
+const app = express();
 
 
 mongoose.Promise = global.Promise;

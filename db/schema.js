@@ -8,18 +8,24 @@ const pieceSchema = new Schema({
     name: String,
     height: Number,
     width: Number,
-    length: Number
+    length: Number,
+    created_at: Date,
+    updated_at: Date
 })
 
 const sectionSchema = new Schema ({
     name: String,
-    pieces: [pieceSchema]
+    pieces: [pieceSchema],
+    created_at: Date,
+    updated_at: Date
 })
 
 const projectSchema = new Schema({
     name: String,
     imageURL: String,
-    sections: [sectionSchema]
+    sections: [sectionSchema],
+    created_at: Date,
+    updated_at: Date
 });
 
 const userSchema = new Schema({
@@ -27,20 +33,43 @@ const userSchema = new Schema({
     lastName: String,
     userName: String,
     company: String,
-    projects: [projectSchema]
+    projects: [projectSchema],
+    created_at: Date,
+    updated_at: Date
 });
 
-// gameSchema.pre('save', function(next){
-//     const emptyBoard = [
-//         false, false, false, false, false, false,
-//         false, false, false, false, false, false,
-//         false, false, false, false, false, false,
-//         false, false, false, false, false, false,
-//         false, false, false, false, false, false,
-//     ];
-//     this.board = emptyBoard;
-//     next();
-// });
+pieceSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+  next();
+});
+sectionSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+  next();
+});
+projectSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+  next();
+});
+userSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+  next();
+});
 
 const Piece = mongoose.model('Piece', pieceSchema);
 const Section = mongoose.model('Section', sectionSchema);
