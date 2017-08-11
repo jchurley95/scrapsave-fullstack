@@ -5,7 +5,6 @@ class ProjectItem extends Component {
     return (
       <div>
         <h2>An Individual Project</h2>
-        {this.props.match.params.projectId}
       </div>
     );
   }
