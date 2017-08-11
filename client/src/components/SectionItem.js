@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-
-class ProjectItem extends Component {
+import PieceItem from './PieceItem';
+class SectionItem extends Component {
   render() {
     return (
       <div>
-        <h2>An Individual Project</h2>
-        <div>Project: {this.props.name} </div>
-        <div>Sections: </div>
+        <h3>Section: {this.props.section.name} </h3>
+        <div></div>
+        <div>Pieces: 
+          <div>
+            {this.props.section.pieces.map((piece, i) => {
+                return <PieceItem key={i} section={piece} 
+                />
+            })}
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default ProjectItem;
+export default SectionItem;

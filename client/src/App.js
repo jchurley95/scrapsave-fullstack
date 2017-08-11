@@ -31,9 +31,6 @@ class App extends Component {
   }
 
   render() {
-    const HomeComponent = () => {
-      <HomePage users={this.state.users}/>
-    }
 
     return (
       <div className="App">
@@ -42,7 +39,7 @@ class App extends Component {
             <div className="Navbar">
               <Link to='/'> Home </Link>
               <Link to='/user/:userId'> My Projects </Link>
-              <Link to='/add-project'> Add A Project </Link>
+              <Link to='/add-project'> New Project </Link>
               <hr />
             </div>
             <div>

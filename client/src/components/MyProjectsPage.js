@@ -3,12 +3,13 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ProjectItem from './ProjectItem';
 
-class ListMyProjects extends Component {
+class MyProjectsPage extends Component {
   constructor(){
     super();
     this.state = {
       id: "",
-      username: "",
+      firstName: "",
+      lastName: '',
       projects: []
     }
   }
@@ -18,9 +19,11 @@ class ListMyProjects extends Component {
     axios.get(`/api/user/${id}`).then(res => {
       this.setState({
         id: res.data._id,
-        username: res.data.username,
+        firstName: res.data.firstName,
+        lastName: res.data.lastName,
         projects: res.data.projects
       });
+      console.log(res.data);
     });
   }
 
@@ -29,20 +32,21 @@ class ListMyProjects extends Component {
   render() {
     return (
       <div>
-        <h1>{this.state.username}'s Projects</h1>
+        <h1>{this.state.firstName} {this.state.lastName}'s Projects</h1>
         <div>
             {this.state.projects.map((project, i) => {
-                return <ProjectItem key={i} project={project} />
+                return <ProjectItem key={i} project={project} 
+                />
             })}
         </div>
         <div>
             <hr />
-            <Link to='/'> Home </Link>
-            <Link to='/add-project'> Add A Project </Link>
+            <Link to='/'> Home </Link> <br />
+            <Link to='/add-project'> New Project </Link>
         </div>
       </div>
     );
   }
 }
 
-export default ListMyProjects;
+export default MyProjectsPage;
