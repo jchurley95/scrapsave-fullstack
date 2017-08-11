@@ -16,13 +16,17 @@ class ProjectItem extends Component {
     return (
       <div>
         <h2>Project: {this.props.project.name} </h2>
-        <div></div>
+        <div>
+          <button>Edit Project</button>
+          <button>Delete Project</button><br /><br />
+        </div>
         <div>Sections: 
           <div>
             {this.props.project.sections.map((section, i) => {
                 return <SectionItem key={i} section={section} 
                 />
             })}
+            
           </div>
         </div>
       </div>

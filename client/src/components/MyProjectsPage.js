@@ -33,6 +33,7 @@ class MyProjectsPage extends Component {
     return (
       <div>
         <h1>{this.state.firstName} {this.state.lastName}'s Projects</h1>
+        <button>New Project</button>
         <div>
             {this.state.projects.map((project, i) => {
                 return <ProjectItem key={i} project={project} 

@@ -37,9 +37,9 @@ class App extends Component {
           <Router>
           <div>
             <div className="Navbar">
-              <Link to='/'> Home </Link>
-              <Link to='/user/:userId'> My Projects </Link>
-              <Link to='/add-project'> New Project </Link>
+            | - <Link to='/'> Home </Link> - | -
+              <Link to='/user/:userId'> My Projects </Link> - | -
+              <Link to='/add-project'> New Project </Link> - |
               <hr />
             </div>
             <div>

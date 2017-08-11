@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+// const NewSectionInput = props => {
+//     const { question, answer, value } = props.question; 
+//       return (
+//         <div>
+//           <h3> {value} </h3>
+//           <label htmlFor={`${value}question`}>Question: </label>
+//           <input onChange={props.changeEvent} type="text" 
+//                 value={question} name={`${value}question`}
+//                 points={value} type="question"
+//           />
+//           <br />
+//           <label htmlFor={`${value}question`}>Answer: </label>
+//           <input onChange={props.changeEvent} type="text"
+//                 value={answer} name={`${value}question`}
+//                 points={value} type="answer"
+//           />
+//           <br />
+//         </div>
+//     );
+//   };
+
 class AddSection extends Component {
+
+
   render() {
     return (
       <div>
@@ -21,6 +44,8 @@ class AddSection extends Component {
                 Height: <input className="dimensions-input" type="text" placeholder="height (in inches)" /> "
                 &times; Width: <input className="dimensions-input" type="text" placeholder="width (in inches)" /> "
                 &times; Length: <input className="dimensions-input" type="text" placeholder="length (in feet)" /> '
+              
+              
           </form>
 
         </div>
@@ -31,3 +56,14 @@ class AddSection extends Component {
 }
 
 export default AddSection
+
+// Color (optional):<br />
+//               <select id="select-material">
+//                   <option>Natural</option>
+//                   <option>Dark Brown</option>
+//                   <option>White</option>
+//                   <option>Black</option>
+//                   <option>Red</option>
+//                   <option>Blue</option>
+//                   <option>Green</option>
+//               </select><br /><br />
