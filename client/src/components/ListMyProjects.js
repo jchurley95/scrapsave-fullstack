@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
+import ProjectItem from './ProjectItem';
 
-class ListMyProjects extends Component {
+class ListAllProjects extends Component {
     render() {
         return(
             <div>
-                <h1>List Of My Projects</h1>
-                {this.props.match.params.userId}
-                console.log({this.props.match.params.userId});
+                <h1>List Of All Projects</h1>.
             </div>
         );
     }
 }
 
-export default ListMyProjects;
+export default ListAllProjects;

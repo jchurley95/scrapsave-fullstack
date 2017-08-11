@@ -144,4 +144,90 @@ outdoorTableProject.save().then(() => console.log("outdoorTableProject Saved!"))
 
 JHurleyUser.save().then(() => console.log("JHurleyUser Saved!"));
 
+// USER: RonSwanson
+            //SECTION 1 TABLE TOP PIECES
+            const tableTopPiece_1 = new Piece ({
+                name: 'Table Top 1',
+                height: 1,
+                width: 6,
+                length: 36
+            });
+            const tableTopPiece_2 = new Piece ({
+                name: 'Table Top 2',
+                height: 1,
+                width: 6,
+                length: 36
+            });
+            const tableTopPiece_3 = new Piece ({
+                name: 'Table Top 3',
+                height: 1,
+                width: 6,
+                length: 36
+            });
+        // SECTION 1 TABLE TOP
+        const tableTopSection_ = new Section ({
+            name: 'Table Top',
+            pieces: [tableTopPiece_1, tableTopPiece_2, tableTopPiece_3]
+        });
+            // SECTION 2 TABLE LEGS PIECES
+            const tableLegPiece_1 = new Piece ({
+                name: 'Table Legs 1',
+                height: 1,
+                width: 6,
+                length: 56
+            });
+            const tableLegPiece_2 = new Piece ({
+                name: 'Table Legs 2',
+                height: 1,
+                width: 6,
+                length: 56
+            });
+            const tableLegPiece_3 = new Piece ({
+                name: 'Table Legs 3',
+                height: 1,
+                width: 6,
+                length: 56
+            });
+            const tableLegPiece_4 = new Piece ({
+                name: 'Table Legs 3',
+                height: 1,
+                width: 6,
+                length: 56
+            });
+        // SECTION 2 TABLE LEGS
+        const tableLegsSection_ = new Section ({
+            name: 'Table Legs',
+            pieces: [tableLegPiece_1, tableLegPiece_2, tableLegPiece_3, tableLegPiece_4]
+        });
+    const outdoorTableProject_ = new Project ({
+        name: 'Outdoor Table',
+        imageURL: './images/outdoorTable', // Edit once the real image is in the images file
+        sections: [tableTopSection_, tableLegsSection_]
+    });
+    // END RonSwanson Project 1
+
+const RonSwansonUser = new User ({
+    firstName: "Ron",
+    lastName: "Swanson",	
+    username: 'RonSwanson',
+    company: 'ReallyGoodWoodShop',
+    projects: [outdoorTableProject_]
+});
+// END User: RonSwanson
+
+
+tableLegPiece_1.save().then(() => console.log("tableLegPiece_1 Saved!"));
+tableLegPiece_2.save().then(() => console.log("tableLegPiece_2 Saved!"));
+tableLegPiece_3.save().then(() => console.log("tableLegPiece_3 Saved!"));
+tableLegPiece_4.save().then(() => console.log("tableLegPiece_4 Saved!"));
+tableLegsSection_.save().then(() => console.log("tableLegsSection_ Saved!"));
+tableTopPiece_1.save().then(() => console.log("tableTopPiece_1 Saved!"));
+tableTopPiece_2.save().then(() => console.log("tableTopPiece_2 Saved!"));
+tableTopPiece_3.save().then(() => console.log("tableTopPiece_3 Saved!"));
+tableTopSection_.save().then(() => console.log("tableTopSection_ Saved!"));
+outdoorTableProject_.save().then(() => console.log("outdoorTableProject_ Saved!"));
+
+RonSwansonUser.save().then(() => console.log("RonSwanson Saved!"));
+
+
 mongoose.connection.close();

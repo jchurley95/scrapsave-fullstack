@@ -1,25 +1,54 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Home from './components/HomePage';
-import ListMyProjects from './components/ListMyProjects';
-import AddProjectForm from './components/AddProjectForm';
+import axios from 'axios';
+
+import HomePage from './components/HomePage';
+import MyProjectsPage from './components/MyProjectsPage';
+import AddProjectPage from './components/AddProjectPage';
 
 
 class App extends Component {
+
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: {
+        userName: 'JCHurley95',
+      },
+      users: [],
+      projects: []
+    }
+  }
+
+  _getUsers = () => {
+    axios.get('/api/users')
+      .then((res) => {
+        const users = res.users;
+        this.setState({ users });
+      })
+  }
+
   render() {
+    const HomeComponent = () => {
+      <HomePage users={this.state.users}/>
+    }
+
     return (
       <div className="App">
           <Router>
           <div>
-            <div>
-              <Link to='/'>Home</Link> <br />
-              <Link to='/add-project'>Add A Project</Link> <br />
+            <div className="Navbar">
+              <Link to='/'> Home </Link>
+              <Link to='/user/:userId'> My Projects </Link>
+              <Link to='/add-project'> Add A Project </Link>
+              <hr />
             </div>
             <div>
-              <Route exact path='/' components={Home} />
-              <Route path='/user/:userId' components={ListMyProjects} />
-              <Route path='/add-projects' components={AddProjectForm} />
+              <Route exact path='/' component={HomePage} />
+              <Route path='/user/:userId' component={MyProjectsPage} />
+              <Route path='/add-project' component={AddProjectPage} />
             </div>
           </div>
         </Router>
