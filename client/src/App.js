@@ -39,13 +39,13 @@ class App extends Component {
             <div className="Navbar">
             | - <Link to='/'> Home </Link> - | -
               <Link to='/user/:userId'> My Projects </Link> - | -
-              <Link to='/add-project'> New Project </Link> - |
+              <Link to='/user/:userId/add-project'> New Project </Link> - |
               <hr />
             </div>
             <div>
               <Route exact path='/' component={HomePage} />
               <Route path='/user/:userId' component={MyProjectsPage} />
-              <Route path='/add-project' component={AddProjectPage} />
+              <Route path='/user/:userId/add-project' component={AddProjectPage} />
             </div>
           </div>
         </Router>

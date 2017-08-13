@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.use('/api/user', UsersController);
 app.get("/", (req, res) => {
-  res.send("Welcome to Scrapsave!");
+  res.render("Welcome to Scrapsave!");
 });
 
 const PORT = process.env.PORT || 3001;
