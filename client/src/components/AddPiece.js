@@ -23,9 +23,11 @@ class AddPiece extends Component {
         super();
 
         this.state = {
-            pieceName: '',
-            pieceWidth: 0,
-            pieceLength: 0
+            piece: {
+                pieceName: '',
+                pieceWidth: 0,
+                pieceLength: 0
+            }
         }
     }
 

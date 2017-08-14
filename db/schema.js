@@ -16,6 +16,13 @@ const pieceSchema = new Schema({
 const sectionSchema = new Schema ({
     name: String,
     pieces: [pieceSchema],
+    material: String,
+    stockWidth: Number,
+    stockLength: Number,
+    stockHeight: Number,
+    amountStockBoardNeededThisSection: Number,
+    costPerStockBoard: Number,
+    sectionCost: Number, // In terms of stock board needed
     created_at: Date,
     updated_at: Date
 })
@@ -24,6 +31,8 @@ const projectSchema = new Schema({
     name: String,
     imageURL: String,
     sections: [sectionSchema],
+    projectCost: Number,
+    totalStockBoardNeededThisProject: Number,
     created_at: Date,
     updated_at: Date
 });

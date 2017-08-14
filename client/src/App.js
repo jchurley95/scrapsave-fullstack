@@ -37,7 +37,7 @@ class App extends Component {
             <div>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/user/:userId' component={MyProjectsPage} />
-              <Route exact path='/user/:userId/add-project' component={NewProjectPage} />
+              <Route path='/user/:userId/add-project' component={NewProjectPage} />
             </div>
           </div>
         </Router>

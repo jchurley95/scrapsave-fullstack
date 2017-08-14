@@ -28,36 +28,37 @@ class NewProjectPage extends Component {
     .catch(err => console.log(err));
   };
 
-  // _addSection = (event) => {
-  //   const newSection = <AddSection />;
-  //   console.log(this.state.userId);
-    
-  //   this.setState({
-  //     sections: this.state.sections.push(newSection)
-  //   });
-
-  // }
-
-  // _addPiece = (event) => {
-  //   //Push a New Section to the sections array and it should appear through the mapping after setState
-    
-  // }
-
   _handleProjectNameChange = (event) => {
     const name = event.target.value;
-
     const project = {...this.state.project}
     project.name = name;
-    console.log(project);
-
     this.setState({project});
   };
+  
+  _addSection = (event) => {
+    const newSection = <AddSection />;
+    console.log(this.state.userId);
+    
+    this.setState({
+      sections: this.state.sections.push(newSection)
+    });
+
+  }
+
+  _addPiece = (event) => {
+    //Push a New Section to the sections array and it should appear through the mapping after setState
+    
+  }
 
   render() {
+    const buildProjectContainer = {
+     display: 'flex',
+     flexDirection: 'column'
+    }
     return (
       <div>
 
-        <div>
+        <div style={buildProjectContainer}>
           <h1>Build: {this.state.project.name}</h1>
           
           <form onSubmit={this._handleSubmit}>
@@ -71,7 +72,7 @@ class NewProjectPage extends Component {
 
           <AddSection />
           <hr />
-          <button onClick={this._addSection} >Add Another Section </button><br /> 
+          {/* <button onClick={this._addSection} >Add Another Section </button><br />  */}
 
           <input onSubmit={this._handleSubmit} type="submit" value="Submit Project" />
           </form>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import AddPiece from './AddPiece';
+import axios from 'axios';
 
 // const NewSectionInput = props => {
 //     const { question, answer, value } = props.question; 
@@ -29,18 +30,22 @@ class AddSection extends Component {
     super();
 
     this.state = {
-      sectionName: '',
-      material: 'common board',
-      stockWidth: 0,
-      stockHeight: 0,
-      stockLength: 0,
-      pieces: [],
+      section: {
+        name: '',
+        material: 'common board',
+        stockWidth: 0,
+        stockHeight: 0,
+        stockLength: 0,
+        pieces: []
+      }
     }
   }
 
   _handleSectionNameChange = (event) => {
-    const sectionName = event.target.value;
-    this.setState({sectionName});
+    const name = event.target.value;
+    const section = {...this.state.section}
+    section.name = name
+    this.setState({section});
   };
   _handleMaterialChange = (event) => {
     const material = event.target.value;
@@ -59,7 +64,22 @@ class AddSection extends Component {
     this.setState({stockHeight});
   };
 
-  
+  _handleProjectNameChange = (event) => {
+    const name = event.target.value;
+    const project = {...this.state.project}
+    project.name = name;
+    this.setState({project});
+  };
+
+  _handleSubmit = (e) => {
+    const userId = this.props.match.params.userId;
+    const projectId = this.props.match.params.projectId; 
+    e.preventDefault();
+    axios.post(`/api/user/${userId}/project/${projectId}`, this.state.section).then((res) => {
+      console.log("Success!");
+    })
+    .catch(err => console.log(err));
+  };
 
   render() {
     
@@ -68,15 +88,23 @@ class AddSection extends Component {
     //   width: `${this.state.stockLength}px`,
     //   border: '2px solid black'
     // }
+    const sectionContainerStyle = {
+      width: '500px'
+    }
     return (
       <div>
 
-        <div>
+        <div style={sectionContainerStyle}>
           <fieldset>
-              <legend><h2>Section {this.state.sectionName}</h2></legend>
-              <input onChange={this._handleSectionNameChange} type="text" placeholder="New Section Name" value={this.state.sectionName} /><br /><br />
+              <legend><h2>Section {this.state.name}</h2></legend>
+              <input onChange={this._handleSectionNameChange} 
+                type="text" 
+                placeholder="New Section Name" 
+                value={this.state.name} />
+              <br /><br />
               <h5>Material: {this.state.material}</h5><br />
-              <select onChange={this._handleMaterialChange} value={this.state.material}>
+              <select onChange={this._handleMaterialChange} 
+                value={this.state.material}>
                   <option>Common Board</option>
                   <option>Cedar</option>
                   <option>Select Pine</option>
