@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 //Need pages to add a section and within a section add pieces 
 
 // const NewPieceInput = props => {

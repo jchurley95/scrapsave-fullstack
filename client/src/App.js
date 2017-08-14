@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import HomePage from './components/HomePage';
 import MyProjectsPage from './components/MyProjectsPage';
-import AddProjectPage from './components/AddProjectPage';
+import NewProjectPage from './components/NewProjectPage';
 
 
 class App extends Component {
@@ -22,14 +22,6 @@ class App extends Component {
     }
   }
 
-  _getUsers = () => {
-    axios.get('/api/users')
-      .then((res) => {
-        const users = res.users;
-        this.setState({ users });
-      })
-  }
-
   render() {
 
     return (
@@ -44,8 +36,8 @@ class App extends Component {
             </div>
             <div>
               <Route exact path='/' component={HomePage} />
-              <Route path='/user/:userId' component={MyProjectsPage} />
-              <Route path='/user/:userId/add-project' component={AddProjectPage} />
+              <Route exact path='/user/:userId' component={MyProjectsPage} />
+              <Route exact path='/user/:userId/add-project' component={NewProjectPage} />
             </div>
           </div>
         </Router>

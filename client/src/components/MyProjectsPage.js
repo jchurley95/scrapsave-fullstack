@@ -14,8 +14,10 @@ class MyProjectsPage extends Component {
     }
   }
 
+
   componentWillMount(){
     const id = this.props.match.params.userId; 
+    console.log("ID is : " + id);
     axios.get(`/api/user/${id}`).then(res => {
       this.setState({
         id: res.data._id,
@@ -23,18 +25,22 @@ class MyProjectsPage extends Component {
         lastName: res.data.lastName,
         projects: res.data.projects
       });
-      console.log(res.data);
+      console.log("Id is: " + res.data._id);
     });
   }
 
   
 
   render() {
+    const myProjectsPageContainerStyle = {
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'space-around'
+    }
     return (
       <div>
         <h1>{this.state.firstName} {this.state.lastName}'s Projects</h1>
-        <button>New Project</button>
-        <div>
+        <div style={myProjectsPageContainerStyle}>
             {this.state.projects.map((project, i) => {
                 return <ProjectItem key={i} project={project} 
                 />
@@ -43,7 +49,7 @@ class MyProjectsPage extends Component {
         <div>
             <hr />
             <Link to='/'> Home </Link> <br />
-            <Link to='/add-project'> New Project </Link>
+            <Link to={`/user/${this.state.id}/add-project`}> New Project </Link>
         </div>
       </div>
     );

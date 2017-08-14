@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SectionItem from './SectionItem';
-import axios from 'axios';
 
 class ProjectItem extends Component {
   constructor() {
@@ -13,8 +12,16 @@ class ProjectItem extends Component {
   }
 
   render() {
+    const projectContainerStyle = {
+      border: '2px solid black',
+      textAlign: 'center',
+      height: '400px',
+      overflowY: 'scroll',
+      margin: '20px',
+      padding: '20px'
+    }
     return (
-      <div>
+      <div style={projectContainerStyle}>
         <h2>Project: {this.props.project.name} </h2>
         <div>
           <button>Edit Project</button>
@@ -26,7 +33,6 @@ class ProjectItem extends Component {
                 return <SectionItem key={i} section={section} 
                 />
             })}
-            
           </div>
         </div>
       </div>

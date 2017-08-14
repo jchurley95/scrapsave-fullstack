@@ -3,14 +3,9 @@
  
  class UserList extends Component {
    render() {
- 
-     const users = [
-       {title: 'A Movie', rating: 'PG-13', description: 'this is a movie'},
-       {title: 'Another Movie', rating: 'R', description: 'this is another movie'},
-     ];
- 
-     const userComponents = users.map((user) => {
-       return <User />;
+
+     const userComponents = users.map((user, i) => {
+       return <User key={i} user={user}/>;
      });
  
      return (

@@ -3,6 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const UsersController = require("./controllers/user");
+const ProjectsController = require("./controllers/project");
+const SectionsController = require("./controllers/section");
+const PiecesController = require("./controllers/piece");
 const app = express();
 
 
@@ -23,6 +26,9 @@ connection.on('error', (err) => {
 app.use(bodyParser.json());
 
 app.use('/api/user', UsersController);
+app.use('/api/project', ProjectsController);
+app.use('/api/section', SectionsController);
+app.use('/api/piece', PiecesController);
 app.get("/", (req, res) => {
   res.render("Welcome to Scrapsave!");
 });

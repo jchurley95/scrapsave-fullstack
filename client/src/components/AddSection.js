@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import AddPiece from './AddPiece';
 
 // const NewSectionInput = props => {
@@ -34,7 +34,7 @@ class AddSection extends Component {
       stockWidth: 0,
       stockHeight: 0,
       stockLength: 0,
-      pieces: []
+      pieces: [],
     }
   }
 
@@ -59,7 +59,15 @@ class AddSection extends Component {
     this.setState({stockHeight});
   };
 
+  
+
   render() {
+    
+    // const stockBoardStyle = {
+    //   height: `${this.state.stockWidth}px`,
+    //   width: `${this.state.stockLength}px`,
+    //   border: '2px solid black'
+    // }
     return (
       <div>
 
@@ -74,7 +82,7 @@ class AddSection extends Component {
                   <option>Select Pine</option>
               </select>
                 <h5>Stock Material Dimensions</h5>
-                <h5> {this.state.stockHeight}" &times; {this.state.stockWidth}" &times; {this.state.stockLength}'</h5> <br />
+                <div> {this.state.stockHeight}" &times; {this.state.stockWidth}" &times; {this.state.stockLength}'</div> <br />
                 Height: <input onChange={this._handleStockHeightChange}  className="dimensions-input" type="text" placeholder="height (in inches)" /> "
                 &times; Width: <input onChange={this._handleStockWidthChange}  className="dimensions-input" type="text" placeholder="width (in inches)" /> "
                 &times; Length: <input onChange={this._handleStockLengthChange}  className="dimensions-input" type="text" placeholder="length (in feet)" /> '<br /><br />
