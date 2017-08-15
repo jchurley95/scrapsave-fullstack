@@ -50,12 +50,15 @@ class MyProjectsPage extends Component {
     }
     return (
       <div>
+
         <h1>{this.state.firstName} {this.state.lastName}</h1>
         <h2>My Projects</h2>
+
         <Link to={`/user/${this.state.id}/add-project`} 
           userId={this.state.id}> 
           New Project 
         </Link>
+
         <div style={myProjectsPageContainerStyle}>
             {this.state.projects.map((project, i) => {
                 return <ProjectItem 
@@ -65,8 +68,8 @@ class MyProjectsPage extends Component {
                   project={project} 
                   deleteProject={this._deleteProject} />
             })}
-            
         </div>
+        
       </div>
     );
   }

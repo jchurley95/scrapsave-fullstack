@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SectionItem from './SectionItem';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 class ProjectItem extends Component {
@@ -15,6 +16,26 @@ class ProjectItem extends Component {
       }
     }
   }
+
+  componentWillMount(){
+    const userId = this.props.userId; 
+    const projectId = this.state.project._id; 
+    console.log("User ID in ProjectItem is: " + userId);
+    console.log("Project ID in ProjectItem is: " + projectId);
+    axios.get(`/api/user/${userId}/project/${projectId}`).then(res => {
+      console.log(res.data);
+      this.setState({
+        project: {
+          projectId: res.data._id,
+          name: res.data.name,
+          sections: res.data.sections
+        }
+      });
+      console.log('this.state is: (down below)')
+      console.log(this.state);
+    });
+  }
+
 
   render() {
     const projectContainerStyle = {
@@ -31,7 +52,7 @@ class ProjectItem extends Component {
         
         <div>
           <Link to={`/user/${this.props.userId}/projects/${this.props.project._id}/edit`}>
-            Keep Building
+            Build
           </Link>
 
           <br /> 

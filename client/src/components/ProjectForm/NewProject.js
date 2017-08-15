@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AddSection from './AddSection';
-import { BrowserRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 //Need pages to add a section and within a section add pieces 
 class NewProject extends Component {
@@ -20,19 +20,20 @@ class NewProject extends Component {
     // this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  _handleSubmit = (e) => {
+  _handleSubmit = (e, history) => {
     //setInterval
     const id = this.props.match.params.userId; 
     e.preventDefault();
-    axios.post(`/api/user/${id}/project`, this.state.project).then((res) => {
-      console.log("Success!");
-    }).then(() => {
-      // const transitionToItem = ({id}) => {
-      //   BrowserRouter.push(`/user/${id}`);
-      // };
-    })
-    
-    .catch(err => console.log(err));
+    axios.post(`/api/user/${id}/project`, this.state.project)
+      .then((res) => {
+        console.log("Success!");
+        console.log("userId from params is: " + this.props.match.params.userId);
+        this.props.history.push(`/user/${this.props.match.userId}`)
+      })
+      // .then((res) => {
+        
+      // })
+      .catch(err => console.log(err));
   };
 
   _handleProjectNameChange = (event) => {
@@ -69,15 +70,22 @@ class NewProject extends Component {
           <h1>Build: {this.state.project.name}</h1>
           
           <form onSubmit={this._handleSubmit}>
+
             <input type="text"
                 onChange={this._handleProjectNameChange} 
                 placeholder="Project Name" 
-                value={this.state.project.name}/>
+                value={this.state.project.name}
+            />
             
             <br />
-          <input onSubmit={this._handleSubmit} 
-            type="submit" 
-            value="Create" />
+
+            <button 
+              onClick={this._handleSubmit} 
+              type="submit" 
+              value="Create">
+              Create New Project
+            </button>
+            
           </form>
 
         </div>
@@ -86,4 +94,4 @@ class NewProject extends Component {
   }
 }
 
-export default NewProject
+export default withRouter(NewProject)

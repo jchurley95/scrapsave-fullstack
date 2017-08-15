@@ -46,12 +46,13 @@ class EditSection extends Component {
    componentWillMount(){
     const userId = this.props.match.params.userId; 
     const projectId = this.props.match.params.projectId; 
-    const sectionId = this.props.match.params.sectionId; 
-    console.log("User ID in EditProject is: " + userId);
-    console.log("Project ID in EditProject is: " + projectId);
-    console.log("Section ID in EditProject is: " + sectionId);
+    const sectionId = this.props.sectionId; 
+    console.log("User ID in EditSection is: " + userId);
+    console.log("Project ID in EditSection is: " + projectId);
+    console.log("Section ID in EditSection is: " + sectionId);
     axios.get(`/api/user/${userId}/project/${projectId}/section/${sectionId}`).then(res => {
-      this.setState({
+        console.log(res.data);
+        this.setState({
         section: {
           id: res.data._id,
           name: res.data.name,
@@ -132,36 +133,50 @@ class EditSection extends Component {
 
         <div style={sectionContainerStyle}>
           <form>
+              <h1>Edit Section</h1>
+              {this.state.name}
               {/*Edit Section Name*/}
               <legend><h2>Edit Name: {this.state.name}</h2></legend>
-              <input onChange={this._handleSectionNameChange} 
-                type="text" 
-                placeholder={this.state.name}
-                value={this.state.name} />
-              <br /><br />
+                <input 
+                    onChange={this._handleSectionNameChange} 
+                    type="text" 
+                    placeholder={this.state.name}
+                    value={this.state.name} 
+                />
 
-              {/*Edit Section Material*/}
-              <h5>Material: {this.state.material}</h5><br />
-              <select onChange={this._handleMaterialChange} 
-                value={this.state.material}>
-                  <option>Common Board</option>
-                  <option>Cedar</option>
-                  <option>Select Pine</option>
-              </select>
+                <br />
+                <br />
 
-              {/*Edit Material Dimensions*/}
-                <h5>Stock Material Dimensions</h5>
-                <div> {this.state.stockHeight}" &times; {this.state.stockWidth}" &times; {this.state.stockLength}'</div> <br />
-                Height: <input onChange={this._handleStockHeightChange}  className="dimensions-input" type="text" placeholder="height (in inches)" /> "
-                &times; Width: <input onChange={this._handleStockWidthChange}  className="dimensions-input" type="text" placeholder="width (in inches)" /> "
-                &times; Length: <input onChange={this._handleStockLengthChange}  className="dimensions-input" type="text" placeholder="length (in feet)" /> '<br /><br />
+                {/*Edit Section Material*/}
+                <h5>Material: {this.state.material}</h5><br />
+                    <select 
+                        onChange={this._handleMaterialChange} 
+                        value={this.state.material}
+                    >
+
+                        <option>Common Board</option>
+                        <option>Cedar</option>
+                        <option>Select Pine</option>
+
+                    </select>
+
+                {/*Edit Material Dimensions*/}
+                    <h5>Stock Material Dimensions</h5>
+                    <div> {this.state.stockHeight}" &times; {this.state.stockWidth}" &times; {this.state.stockLength}'</div> <br />
+                    Height: <input onChange={this._handleStockHeightChange}  className="dimensions-input" type="text" placeholder="height (in inches)" /> "
+                    &times; Width: <input onChange={this._handleStockWidthChange}  className="dimensions-input" type="text" placeholder="width (in inches)" /> "
+                    &times; Length: <input onChange={this._handleStockLengthChange}  className="dimensions-input" type="text" placeholder="length (in feet)" /> '<br /><br />
               
-              {this.state.section.pieces.map((piece, i) => {
-                return <PieceItem key={i} id={this.state.section.id} piece={piece}/>
-              })}
-              <Link to='/user/:userId/projects/:projectId/section/:sectionId/add-piece'>Add Another Piece</Link><br /><br />
-              <button>Remove Section</button>
-          </form> <br />
+                {this.state.section.pieces.map((piece, i) => {
+                    return <PieceItem 
+                            key={i} 
+                            id={this.state.section.id} 
+                            piece={piece}/>
+                })}
+
+                <Link to='/user/:userId/projects/:projectId/section/:sectionId/add-piece'>Add A Piece</Link><br /><br />
+                <button>Remove Section</button>
+            </form> <br />
         </div>
 
       </div>

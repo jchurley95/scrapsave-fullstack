@@ -20,13 +20,15 @@ class SectionItem extends Component {
     }
   }
 
-  
+
 
   render() {
     return (
       <div>
         <h3>Section: {this.props.section.name} </h3>
-        <Link to='/user/:userId/projects/:projectId/section/:sectionId/edit'>
+        <Link 
+          to={`/user/${this.props.userId}/projects/${this.state.projectid}/section/${this.state.id}/edit`}
+        >
           Edit Section
         </Link>
 

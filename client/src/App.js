@@ -32,14 +32,6 @@ class App extends Component {
   // Maybe make const components for the route components that help pass through currentUserId
 
   render() {
-    const navbarStyle = {
-      border: '2px solid black',
-      padding: '10px',
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-
-    }
     const iconStyle = {
       height: '50px',
       width: '50px'
@@ -48,7 +40,7 @@ class App extends Component {
       <div className="App">
           <Router>
           <div>
-            <div className="App-Navbar" style={navbarStyle}>
+            <div className="App-Navbar">
               <Link to='/'> 
                 <img style={iconStyle} src={HomeIcon} />HOME 
               </Link>   

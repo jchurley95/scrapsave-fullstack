@@ -10,13 +10,13 @@ body {
 }
 
 .App-Navbar {
-  border: 2px solid black;
   padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   background-image: url('./images/navbar_back.jpg');
   color: black;
+  box-shadow: 0 0 20px 10px black;
 }
 
 .App-Navbar a {
@@ -33,14 +33,19 @@ body {
 }
 
 a {
-  box-shadow: 0 0 20px 7px black inset;
+  /* box-shadow: 0 0 20px 7px black inset; */
   color: white;
   border: 1px solid black;
   padding: 10px;
   border-radius: 10px;
   background-color: rgba(0,0,0,0.1);
   text-decoration: none;
-  margin: 10px;
+  margin: 10px; 
+}
+
+.User-Index-Link a {
+  box-shadow: none;
+  border: none;
 }
 
 .ProjectContainer {

@@ -11,7 +11,7 @@ class User extends Component {
         // });
         return ( 
             <div>
-                <Link to={`user/${this.props._id}/public`}>
+                <Link to={`user/${this.props._id}/public`} className='User-Index-Link'>
                     <h1>{this.props.firstName} {this.props.lastName}</h1>
                 </Link>
 

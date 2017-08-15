@@ -81,9 +81,9 @@ router.put('/:userId/project/:projectId', (req, res) => {
   const userIdToUpdate = req.params.userId;
   const projectIdToUpdate = req.params.projectId;
   const infoToUpdate = req.body;
-  User.findById(userIdToUpdate)
+  Project.findByIdAndUpdate(projectIdToUpdate, infoToUpdate)
     .then((user) => {
-      res.redirect(`/users/${projectIdToUpdate}`)
+      res.send("Updated Successfully");
     })
     .catch((error) => {
       console.log(`Project with ID of ${projectIdToUpdate} failed to update!`)

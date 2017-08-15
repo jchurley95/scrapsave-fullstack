@@ -27,7 +27,7 @@ class EditProject extends Component {
     console.log("User ID in EditProject is: " + userId);
     console.log("Project ID in EditProject is: " + projectId);
     axios.get(`/api/user/${userId}/project/${projectId}`).then(res => {
-      console.log("Data is: " + res.data);
+      console.log(res.data);
       this.setState({
         project: {
           id: res.data._id,
@@ -108,11 +108,16 @@ class EditProject extends Component {
             <br />
 
             {/* Link to ADD A SECTION  */}
-            <Link to='/user/${this.props.userId}/projects/${this.state.id}/add-section'>Add A Section</Link><br /><br />
+            <Link to={`/user/${this.props.userId}/projects/${this.state.id}/add-section`}>Add A Section</Link><br /><br />
 
             {/* Show this project's sections */}
             {this.state.project.sections.map((section, i) => {
-              return <SectionItem key={i} id={this.state.project.id} section={section}/>
+              return <SectionItem 
+                      key={i} 
+                      userId={this.props.userId}
+                      projectId={this.state.project.id} 
+                      section={section}
+                      />
             })}
 
           </form>
