@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SectionItem from './SectionItem';
+import SectionItem from '../MyProject/SectionItem';
 
-class ProjectItem extends Component {
+class PublicProjectItem extends Component {
   constructor() {
     super();
 
@@ -15,7 +15,7 @@ class ProjectItem extends Component {
     const projectContainerStyle = {
       border: '2px solid black',
       textAlign: 'center',
-      height: '400px',
+      height: '300px',
       overflowY: 'scroll',
       margin: '20px',
       padding: '20px'
@@ -23,10 +23,6 @@ class ProjectItem extends Component {
     return (
       <div style={projectContainerStyle}>
         <h2>Project: {this.props.project.name} </h2>
-        <div>
-          <button>Edit Project</button>
-          <button>Delete Project</button><br /><br />
-        </div>
         <div>Sections: 
           <div>
             {this.props.project.sections.map((section, i) => {
@@ -40,4 +36,4 @@ class ProjectItem extends Component {
   }
 }
 
-export default ProjectItem;
+export default PublicProjectItem;

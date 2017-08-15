@@ -6,8 +6,6 @@ class SectionItem extends Component {
       <div>
         <h3>Section: {this.props.section.name} </h3>
         <div>
-            <button>Edit Section</button>
-            <button>Delete Section</button>
             <hr />
         </div>
         <div>Pieces: 

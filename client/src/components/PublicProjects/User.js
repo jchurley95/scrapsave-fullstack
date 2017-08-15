@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ProjectItem from './ProjectItem';
-import axios from 'axios';
+import ProjectItem from '../MyProject/ProjectItem';
+import { Link } from 'react-router-dom';
 
 class User extends Component {
 
@@ -11,7 +11,10 @@ class User extends Component {
         // });
         return ( 
             <div>
-                <h1>{this.props.firstName} {this.props.lastName}</h1>
+                <Link to={`user/${this.props._id}/public`}>
+                    <h1>{this.props.firstName} {this.props.lastName}</h1>
+                </Link>
+
             </div>
         )
     }

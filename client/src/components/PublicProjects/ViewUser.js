@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ProjectItem from './ProjectItem';
+import PublicProjectItem from './PublicProjectItem';
 
-class MyProjectsPage extends Component {
+class ViewUser extends Component {
   constructor(){
     super();
     this.state = {
@@ -32,7 +32,7 @@ class MyProjectsPage extends Component {
   
 
   render() {
-    const myProjectsPageContainerStyle = {
+    const publicProjectsPageContainerStyle = {
       textAlign: 'center',
       display: 'flex',
       justifyContent: 'space-around'
@@ -40,20 +40,15 @@ class MyProjectsPage extends Component {
     return (
       <div>
         <h1>{this.state.firstName} {this.state.lastName}'s Projects</h1>
-        <div style={myProjectsPageContainerStyle}>
+        <div style={publicProjectsPageContainerStyle}>
             {this.state.projects.map((project, i) => {
-                return <ProjectItem key={i} project={project} 
+                return <PublicProjectItem key={i} project={project} 
                 />
             })}
-        </div>
-        <div>
-            <hr />
-            <Link to='/'> Home </Link> <br />
-            <Link to={`/user/${this.state.id}/add-project`}> New Project </Link>
         </div>
       </div>
     );
   }
 }
 
-export default MyProjectsPage;
+export default ViewUser;

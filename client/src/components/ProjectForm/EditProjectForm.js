@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import AddSection from './AddSection';
 
 //Need pages to add a section and within a section add pieces 
-class NewProjectPage extends Component {
+class EditProject extends Component {
 
   constructor() {
     super();
@@ -20,9 +20,10 @@ class NewProjectPage extends Component {
   }
 
   _handleSubmit = (e) => {
-    const id = this.props.match.params.userId; 
+    const userId = this.props.match.params.userId;
+    const projectId = this.props.match.params.projectId; 
     e.preventDefault();
-    axios.post(`/api/user/${id}/project`, this.state.project).then((res) => {
+    axios.post(`/api/user/${userId}/project/${projectId}`, this.state.project).then((res) => {
       console.log("Success!");
     })
     .catch(err => console.log(err));
@@ -36,12 +37,13 @@ class NewProjectPage extends Component {
   };
   
   _addSection = (event) => {
-    const newSection = <AddSection />;
-    console.log(this.state.userId);
+    // const newSection = new Section;
     
-    this.setState({
-      sections: this.state.sections.push(newSection)
-    });
+    // console.log(this.state.userId);
+    
+    // this.setState({
+    //   sections: this.state.sections.push(newSection)
+    // });
 
   }
 
@@ -62,31 +64,21 @@ class NewProjectPage extends Component {
           <h1>Build: {this.state.project.name}</h1>
           
           <form onSubmit={this._handleSubmit}>
-            Project Name:<br />
             <input type="text"
                 onChange={this._handleProjectNameChange} 
                 placeholder="Project Name" 
                 value={this.state.project.name}/>
             
-            <br /><br />
-
-          <AddSection />
-          <hr />
-          {/* <button onClick={this._addSection} >Add Another Section </button><br />  */}
-
-          <input onSubmit={this._handleSubmit} type="submit" value="Submit Project" />
+            <br />
+          <input onSubmit={this._handleSubmit} 
+            type="submit" 
+            value="Create" />
           </form>
-          <button>Cancel</button>
 
         </div>
-          <div>
-            <hr />
-            <Link to='/user/:userId'> My Projects </Link> <br />
-            <Link to='/'> Home </Link>
-          </div>
       </div>
     );
   }
 }
 
-export default NewProjectPage
+export default EditProject
