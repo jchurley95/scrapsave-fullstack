@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AddPiece from './AddPiece';
+import PieceItem from '../MyProject/PieceItem';
 import axios from 'axios';
 
 // const NewSectionInput = props => {
@@ -24,13 +25,14 @@ import axios from 'axios';
 //     );
 //   };
 
-class AddSection extends Component {
+class EditSection extends Component {
 
   constructor() {
     super();
 
     this.state = {
       section: {
+        id: '',
         name: '',
         material: 'common board',
         stockWidth: 0,
@@ -40,6 +42,31 @@ class AddSection extends Component {
       }
     }
   }
+
+   componentWillMount(){
+    const userId = this.props.match.params.userId; 
+    const projectId = this.props.match.params.projectId; 
+    const sectionId = this.props.match.params.sectionId; 
+    console.log("User ID in EditProject is: " + userId);
+    console.log("Project ID in EditProject is: " + projectId);
+    console.log("Section ID in EditProject is: " + sectionId);
+    axios.get(`/api/user/${userId}/project/${projectId}/section/${sectionId}`).then(res => {
+      this.setState({
+        section: {
+          id: res.data._id,
+          name: res.data.name,
+          material: res.data.material,
+          stockWidth: res.data.stockWidth,
+          stockHeight: res.data.stockHeight,
+          stockLength: res.data.stockLength,
+          pieces: res.data.sections
+        }
+      });
+      console.log('this.state is: (down below)')
+      console.log(this.state);
+    });
+  }
+
 
   _handleSectionNameChange = (event) => {
     const name = event.target.value;
@@ -104,13 +131,16 @@ class AddSection extends Component {
       <div>
 
         <div style={sectionContainerStyle}>
-          <fieldset>
-              <legend><h2>Section {this.state.name}</h2></legend>
+          <form>
+              {/*Edit Section Name*/}
+              <legend><h2>Edit Name: {this.state.name}</h2></legend>
               <input onChange={this._handleSectionNameChange} 
                 type="text" 
-                placeholder="New Section Name" 
+                placeholder={this.state.name}
                 value={this.state.name} />
               <br /><br />
+
+              {/*Edit Section Material*/}
               <h5>Material: {this.state.material}</h5><br />
               <select onChange={this._handleMaterialChange} 
                 value={this.state.material}>
@@ -118,15 +148,20 @@ class AddSection extends Component {
                   <option>Cedar</option>
                   <option>Select Pine</option>
               </select>
+
+              {/*Edit Material Dimensions*/}
                 <h5>Stock Material Dimensions</h5>
                 <div> {this.state.stockHeight}" &times; {this.state.stockWidth}" &times; {this.state.stockLength}'</div> <br />
                 Height: <input onChange={this._handleStockHeightChange}  className="dimensions-input" type="text" placeholder="height (in inches)" /> "
                 &times; Width: <input onChange={this._handleStockWidthChange}  className="dimensions-input" type="text" placeholder="width (in inches)" /> "
                 &times; Length: <input onChange={this._handleStockLengthChange}  className="dimensions-input" type="text" placeholder="length (in feet)" /> '<br /><br />
-              <AddPiece />
-              <button>Add Another Piece</button><br /><br />
+              
+              {this.state.section.pieces.map((piece, i) => {
+                return <PieceItem key={i} id={this.state.section.id} piece={piece}/>
+              })}
+              <Link to='/user/:userId/projects/:projectId/section/:sectionId/add-piece'>Add Another Piece</Link><br /><br />
               <button>Remove Section</button>
-          </fieldset> <br />
+          </form> <br />
         </div>
 
       </div>
@@ -134,7 +169,7 @@ class AddSection extends Component {
   }
 }
 
-export default AddSection
+export default EditSection
 
 // Color (optional):<br />
 //               <select id="select-material">

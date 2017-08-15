@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AddSection from './AddSection';
+import { BrowserRouter } from 'react-router-dom';
 
 //Need pages to add a section and within a section add pieces 
 class NewProject extends Component {
@@ -25,6 +26,10 @@ class NewProject extends Component {
     e.preventDefault();
     axios.post(`/api/user/${id}/project`, this.state.project).then((res) => {
       console.log("Success!");
+    }).then(() => {
+      // const transitionToItem = ({id}) => {
+      //   BrowserRouter.push(`/user/${id}`);
+      // };
     })
     
     .catch(err => console.log(err));

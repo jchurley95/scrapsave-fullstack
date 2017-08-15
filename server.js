@@ -26,7 +26,7 @@ connection.on('error', (err) => {
 app.use(bodyParser.json());
 
 app.use('/api/user', UsersController);
-app.use('/api/project', ProjectsController);
+app.use('/api/user/:userId/project', ProjectsController);
 app.use('/api/section', SectionsController);
 app.use('/api/piece', PiecesController);
 app.get("/", (req, res) => {

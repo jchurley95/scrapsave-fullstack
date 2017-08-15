@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SectionItem from '../MyProject/SectionItem';
+import PublicSectionItem from './PublicSectionItem';
 
 class PublicProjectItem extends Component {
   constructor() {
@@ -21,12 +21,12 @@ class PublicProjectItem extends Component {
       padding: '20px'
     }
     return (
-      <div style={projectContainerStyle}>
+      <div className="ProjectContainer" style={projectContainerStyle}>
         <h2>Project: {this.props.project.name} </h2>
         <div>Sections: 
           <div>
             {this.props.project.sections.map((section, i) => {
-                return <SectionItem key={i} section={section} 
+                return <PublicSectionItem key={i} section={section} 
                 />
             })}
           </div>

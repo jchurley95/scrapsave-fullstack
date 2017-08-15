@@ -59,8 +59,8 @@ class HomePage extends Component {
       <div>
           <h1>Home</h1>
             <div style={homePageLayout}>
+              
               <div>
-                
                   <h2>DIY'ers:</h2>
                   <div>
                     {this.state.users.map((user, i) => {
@@ -68,15 +68,16 @@ class HomePage extends Component {
                     })}
                   </div>
               </div>
+
               <div>
-                    
-                    <div style={publicProjectStyle}>
-                      <h2>Browse Projects:</h2>
-                      {this.state.allProjects.map((project, i) => {
-                        return <PublicProjectItem  key={i} project={project}/>
-                      })}
-                    </div>
+                <div style={publicProjectStyle}>
+                  <h2>Browse Projects:</h2>
+                  {this.state.allProjects.map((project, i) => {
+                    return <PublicProjectItem  key={i} project={project}/>
+                  })}
+                </div>
               </div>
+
           </div>
       </div>
     );

@@ -29,18 +29,16 @@ class MyProjectsPage extends Component {
     });
   }
 
-  _deleteProject = (index) => {
+  _deleteProject = (index, projectId) => {
+    console.log(projectId);
     const userId = this.props.match.params.userId;
-    const projectId = this.props.match.params.projectId;
+    // const projectId = this.props.match.params.projectId;
     const projects = [...this.state.projects];
-    // axios.delete(`/api/user/${id}/project/${index}`).then((res) => {
-      
-    // })
     projects.splice(index, 1);
     this.setState({projects});
-    console.log("ID is : " + userId);
+    console.log("User ID is : " + userId);
     axios.delete(`/api/user/${userId}/project/${projectId}`).then(res => {
-      console.log("Id is: " + res.data._id);
+      console.log("Project ID is: " + projectId);
     });
   }
 
@@ -52,8 +50,12 @@ class MyProjectsPage extends Component {
     }
     return (
       <div>
-        <h1>{this.state.firstName} {this.state.lastName}'s Projects</h1>
-        <Link to={`/user/${this.state.id}/add-project`}> New Project </Link>
+        <h1>{this.state.firstName} {this.state.lastName}</h1>
+        <h2>My Projects</h2>
+        <Link to={`/user/${this.state.id}/add-project`} 
+          userId={this.state.id}> 
+          New Project 
+        </Link>
         <div style={myProjectsPageContainerStyle}>
             {this.state.projects.map((project, i) => {
                 return <ProjectItem 
