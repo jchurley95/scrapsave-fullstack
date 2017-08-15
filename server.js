@@ -24,13 +24,17 @@ connection.on('error', (err) => {
 })
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/client/build/'));
+
+
 
 app.use('/api/user', UsersController);
 app.use('/api/user/:userId/project', ProjectsController);
 app.use('/api/section', SectionsController);
 app.use('/api/piece', PiecesController);
+
 app.get("/", (req, res) => {
-  res.render("Welcome to Scrapsave!");
+  res.sendFile(__dirname + "/client/build/index.html");
 });
 
 const PORT = process.env.PORT || 3001;
