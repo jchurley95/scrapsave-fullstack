@@ -30,13 +30,18 @@ class MyProjectsPage extends Component {
   }
 
   _deleteProject = (index) => {
-    const id = this.props.match.params.userId;
+    const userId = this.props.match.params.userId;
+    const projectId = this.props.match.params.projectId;
     const projects = [...this.state.projects];
     // axios.delete(`/api/user/${id}/project/${index}`).then((res) => {
       
     // })
     projects.splice(index, 1);
     this.setState({projects});
+    console.log("ID is : " + userId);
+    axios.delete(`/api/user/${userId}/project/${projectId}`).then(res => {
+      console.log("Id is: " + res.data._id);
+    });
   }
 
   render() {
@@ -54,6 +59,7 @@ class MyProjectsPage extends Component {
                 return <ProjectItem 
                   key={i} 
                   id={i}
+                  userId={this.state.id}
                   project={project} 
                   deleteProject={this._deleteProject} />
             })}

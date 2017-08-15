@@ -11,6 +11,7 @@ class EditProject extends Component {
 
     this.state = {
       project: {
+        id: '',
         name: '',
         sections: []
       }
@@ -73,6 +74,8 @@ class EditProject extends Component {
           <input onSubmit={this._handleSubmit} 
             type="submit" 
             value="Create" />
+
+            <AddSection />
           </form>
 
         </div>

@@ -7,6 +7,7 @@ class ProjectItem extends Component {
     super();
 
     this.state = {
+      id: '',
       name: '(Unnamed)',
       sections: []
     }
@@ -25,7 +26,7 @@ class ProjectItem extends Component {
       <div style={projectContainerStyle}>
         <h2>Project: {this.props.project.name} </h2>
         <div>
-          <Link to={`/user/${this.state.id}/add-project`}><button>Keep Building</button></Link>
+          <Link to={`/user/${this.props.userId}/projects/${this.props.project._id}/edit`}><button>Keep Building</button></Link>
           <button onClick={() => this.props.deleteProject(this.props.id)}>
             Delete</button>
         </div>

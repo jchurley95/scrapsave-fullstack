@@ -89,7 +89,7 @@ class AddSection extends Component {
     //   border: '2px solid black'
     // }
     const sectionContainerStyle = {
-      width: '500px'
+      backgroundColor: 'rgba(0,0,0,0.5)'
     }
     return (
       <div>
