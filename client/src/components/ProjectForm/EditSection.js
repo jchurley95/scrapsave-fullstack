@@ -135,6 +135,7 @@ class EditSection extends Component {
           <form>
               <h1>Edit Section</h1>
               {this.state.name}
+              
               {/*Edit Section Name*/}
               <legend><h2>Edit Name: {this.state.name}</h2></legend>
                 <input 

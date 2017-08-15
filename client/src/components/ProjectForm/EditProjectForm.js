@@ -35,7 +35,7 @@ class EditProject extends Component {
           sections: res.data.sections
         }
       });
-      console.log('this.state is: (down below)')
+      console.log('this.state for EditProjectForm is: (down below)')
       console.log(this.state);
     });
   }
@@ -45,6 +45,13 @@ class EditProject extends Component {
     const projectId = this.props.match.params.projectId; 
     e.preventDefault();
     axios.post(`/api/user/${userId}/project/${projectId}`, this.state.project).then((res) => {
+      this.setState({
+        project: {
+          id: res.data._id,
+          name: res.data.name,
+          sections: res.data.sections
+        }
+      });
       console.log("Success!");
     })
     .catch(err => console.log(err));
@@ -108,15 +115,15 @@ class EditProject extends Component {
             <br />
 
             {/* Link to ADD A SECTION  */}
-            <Link to={`/user/${this.props.userId}/projects/${this.state.id}/add-section`}>Add A Section</Link><br /><br />
+            <Link to={`/user/${this.props.match.params.userId}/projects/${this.props.match.params.userId}/add-section`}>Add A Section</Link><br /><br />
 
             {/* Show this project's sections */}
             {this.state.project.sections.map((section, i) => {
               return <SectionItem 
-                      key={i} 
-                      userId={this.props.userId}
-                      projectId={this.state.project.id} 
-                      section={section}
+                        key={i} 
+                        userId={this.props.match.params.userId}
+                        projectId={this.state.project.id} 
+                        section={section}
                       />
             })}
 

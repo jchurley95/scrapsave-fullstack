@@ -31,7 +31,7 @@ class AddSection extends Component {
 
     this.state = {
       section: {
-        name: '',
+        name: 'New Section',
         material: 'common board',
         stockWidth: 0,
         stockHeight: 0,
@@ -64,21 +64,22 @@ class AddSection extends Component {
     this.setState({stockHeight});
   };
 
-  _handleProjectNameChange = (event) => {
+  _handleSectionNameChange = (event) => {
     const name = event.target.value;
-    const project = {...this.state.project}
-    project.name = name;
-    this.setState({project});
+    const section = {...this.state.section}
+    section.name = name;
+    this.setState({section});
   };
 
   _handleSubmit = (e) => {
     const userId = this.props.match.params.userId;
     const projectId = this.props.match.params.projectId; 
     e.preventDefault();
-    axios.post(`/api/user/${userId}/project/${projectId}`, this.state.section).then((res) => {
-      console.log("Success!");
-    })
-    .catch(err => console.log(err));
+    axios.post(`/api/user/${userId}/project/${projectId}/section`, this.state.section)
+      .then((res) => {
+        console.log("Success!");
+      })
+      .catch(err => console.log(err));
   };
 
   _addPiece = (event) => {
@@ -104,29 +105,45 @@ class AddSection extends Component {
       <div>
 
         <div style={sectionContainerStyle}>
-          <fieldset>
-              <legend><h2>Section {this.state.name}</h2></legend>
-              <input onChange={this._handleSectionNameChange} 
-                type="text" 
-                placeholder="New Section Name" 
-                value={this.state.name} />
-              <br /><br />
-              <h5>Material: {this.state.material}</h5><br />
-              <select onChange={this._handleMaterialChange} 
-                value={this.state.material}>
-                  <option>Common Board</option>
-                  <option>Cedar</option>
-                  <option>Select Pine</option>
-              </select>
-                <h5>Stock Material Dimensions</h5>
-                <div> {this.state.stockHeight}" &times; {this.state.stockWidth}" &times; {this.state.stockLength}'</div> <br />
+          <form>
+              <legend><h2>Section Name: {this.state.section.name}</h2></legend>
+                <input onChange={this._handleSectionNameChange} 
+                  type="text" 
+                  placeholder="New Section Name" 
+                  value={this.state.section.name} />
+
+              <br />
+              <br />
+
+              <h5>Material: {this.state.section.material}</h5><br />
+                <select onChange={this._handleMaterialChange} 
+                  value={this.state.section.material}>
+                    <option>Common Board</option>
+                    <option>Cedar</option>
+                    <option>Select Pine</option>
+                </select>
+
+              <h5>Stock Material Dimensions</h5>
+                <div> {this.state.section.stockHeight}" &times; {this.state.section.stockWidth}" &times; {this.state.section.stockLength}'</div> 
+                
+                <br />
+
                 Height: <input onChange={this._handleStockHeightChange}  className="dimensions-input" type="text" placeholder="height (in inches)" /> "
                 &times; Width: <input onChange={this._handleStockWidthChange}  className="dimensions-input" type="text" placeholder="width (in inches)" /> "
-                &times; Length: <input onChange={this._handleStockLengthChange}  className="dimensions-input" type="text" placeholder="length (in feet)" /> '<br /><br />
-              <AddPiece />
-              <button>Add Another Piece</button><br /><br />
-              <button>Remove Section</button>
-          </fieldset> <br />
+                &times; Length: <input onChange={this._handleStockLengthChange}  className="dimensions-input" type="text" placeholder="length (in feet)" /> '
+                
+                <br />
+                <br />
+              
+              <input 
+                type="submit" 
+                value="Create Section" 
+              />
+
+              <br /> 
+
+          </form>
+          <br /> 
         </div>
 
       </div>

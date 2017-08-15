@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SectionItem from './SectionItem';
+import SectionName from './SectionName';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -68,7 +68,7 @@ class ProjectItem extends Component {
         <div>Sections: 
           <div>
             {this.props.project.sections.map((section, i) => {
-                return <SectionItem 
+                return <SectionName
                   key={i} 
                   section={section} 
                   userId={this.props.userId}
