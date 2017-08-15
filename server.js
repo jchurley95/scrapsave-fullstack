@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/client/build/'));
 
 
 app.use('/api/user', UsersController);
-app.use('/api/user/:userId/project', ProjectsController);
+// app.use('/api/user/:userId/project', ProjectsController);
 app.use('/api/section', SectionsController);
 app.use('/api/piece', PiecesController);
 

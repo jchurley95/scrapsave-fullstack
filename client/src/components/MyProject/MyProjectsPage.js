@@ -19,6 +19,7 @@ class MyProjectsPage extends Component {
     const id = this.props.match.params.userId; 
     console.log("ID is : " + id);
     axios.get(`/api/user/${id}`).then(res => {
+      console.log(res.data);
       this.setState({
         id: res.data._id,
         firstName: res.data.firstName,

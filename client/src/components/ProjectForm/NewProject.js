@@ -16,23 +16,14 @@ class NewProject extends Component {
         sections: []
       }
     }
-
-    // this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  _handleSubmit = (e, history) => {
-    //setInterval
+  _handleSubmit = () => {
     const id = this.props.match.params.userId; 
-    e.preventDefault();
     axios.post(`/api/user/${id}/project`, this.state.project)
       .then((res) => {
         console.log("Success!");
-        console.log("userId from params is: " + this.props.match.params.userId);
-        this.props.history.push(`/user/${this.props.match.userId}`)
       })
-      // .then((res) => {
-        
-      // })
       .catch(err => console.log(err));
   };
 
@@ -63,6 +54,15 @@ class NewProject extends Component {
      display: 'flex',
      flexDirection: 'column'
     }
+
+    const handleClick = (e, history) => {
+    e.preventDefault();
+    const id = this.props.match.params.userId; 
+    console.log("userId from params is: " + id);
+    this.props.history.push(`/user/${id}`)
+    this._handleSubmit();
+    }
+
     return (
       <div>
 
@@ -80,12 +80,11 @@ class NewProject extends Component {
             <br />
 
             <button 
-              onClick={this._handleSubmit} 
+              onClick={handleClick} 
               type="submit" 
-              value="Create">
-              Create New Project
-            </button>
+              >Create New Project</button>
             
+
           </form>
 
         </div>

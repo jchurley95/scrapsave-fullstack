@@ -27,7 +27,7 @@ class EditProject extends Component {
     console.log("User ID in EditProject is: " + userId);
     console.log("Project ID in EditProject is: " + projectId);
     axios.get(`/api/user/${userId}/project/${projectId}`).then(res => {
-      console.log(res.data);
+      console.log("Setting state:", res.data);
       this.setState({
         project: {
           id: res.data._id,
@@ -44,7 +44,7 @@ class EditProject extends Component {
     const userId = this.props.match.params.userId;
     const projectId = this.props.match.params.projectId; 
     e.preventDefault();
-    axios.post(`/api/user/${userId}/project/${projectId}`, this.state.project).then((res) => {
+    axios.put(`/api/user/${userId}/project/${projectId}`, this.state.project).then((res) => {
       this.setState({
         project: {
           id: res.data._id,
@@ -54,7 +54,10 @@ class EditProject extends Component {
       });
       console.log("Success!");
     })
-    .catch(err => console.log(err));
+    .catch((err) => {
+      console.log("ERROR IS HAPPENING HERE")
+      console.log(err)
+    });
   };
 
   _handleProjectNameChange = (event) => {
@@ -62,6 +65,7 @@ class EditProject extends Component {
     const project = {...this.state.project}
     project.name = name;
     this.setState({project});
+    console.log(this.state)
   };
 
   
@@ -118,6 +122,7 @@ class EditProject extends Component {
             <Link to={`/user/${this.props.match.params.userId}/projects/${this.props.match.params.userId}/add-section`}>Add A Section</Link><br /><br />
 
             {/* Show this project's sections */}
+            {}
             {this.state.project.sections.map((section, i) => {
               return <SectionItem 
                         key={i} 

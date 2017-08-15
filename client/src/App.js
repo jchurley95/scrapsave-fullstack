@@ -22,7 +22,7 @@ class App extends Component {
     super();
 
     this.state = {
-      currentUserId: '5993040c0f61ef84146d8376',
+      currentUserId: '59936e5475a1e7cdbfc07661',
       users: [],
       projects: []
     }
