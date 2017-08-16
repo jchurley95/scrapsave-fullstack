@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ProjectItem from './ProjectItem';
+import NewProject from '../ProjectForm/NewProject';
 
 class MyProjectsPage extends Component {
   constructor(){
@@ -55,11 +56,6 @@ class MyProjectsPage extends Component {
         <h1>{this.state.firstName} {this.state.lastName}</h1>
         <h2>My Projects</h2>
 
-        <Link to={`/user/${this.state.id}/add-project`} 
-          userId={this.state.id}> 
-          New Project 
-        </Link>
-
         <div style={myProjectsPageContainerStyle}>
             {this.state.projects.map((project, i) => {
                 return <ProjectItem 
@@ -70,7 +66,7 @@ class MyProjectsPage extends Component {
                   deleteProject={this._deleteProject} />
             })}
         </div>
-        
+          <NewProject />
       </div>
     );
   }

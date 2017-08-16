@@ -64,10 +64,7 @@ class HomePage extends Component {
                   <h2>DIY'ers:</h2>
                   <div>
                     {this.state.users.map((user, i) => {
-                      return <User 
-                                key={i} 
-                                {...user}
-                              />
+                      return <User key={i} {...user}/>
                     })}
                   </div>
               </div>

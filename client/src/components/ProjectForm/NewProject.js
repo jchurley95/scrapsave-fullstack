@@ -13,7 +13,7 @@ class NewProject extends Component {
     this.state = {
       project: {
         name: '',
-        sections: []
+        projectList: []
       }
     }
   }
@@ -31,6 +31,12 @@ class NewProject extends Component {
     const name = event.target.value;
     const project = {...this.state.project}
     project.name = name;
+    this.setState({project});
+  };
+  _handleProjectListChange = (event) => {
+    const projectList = event.target.value;
+    const project = {...this.state.project}
+    project.projectList = projectList;
     this.setState({project});
   };
   
@@ -67,14 +73,24 @@ class NewProject extends Component {
       <div>
 
         <div style={buildProjectContainer}>
-          <h1>Build: {this.state.project.name}</h1>
           
           <form onSubmit={this._handleSubmit}>
-
+            <fieldset>
+            <legend><h1>Build New Project:</h1></legend>
+            <label>{this.state.project.name}</label>
+            <br />
             <input type="text"
                 onChange={this._handleProjectNameChange} 
                 placeholder="Project Name" 
                 value={this.state.project.name}
+            />
+            <br />
+            <label>{this.state.project.projectList}</label>
+            <br />
+            <input type="text"
+                onChange={this._handleProjectListChange} 
+                placeholder="Project List" 
+                value={this.state.project.projectList}
             />
             
             <br />
@@ -84,7 +100,7 @@ class NewProject extends Component {
               type="submit" 
               >Create New Project</button>
             
-
+            </fieldset>
           </form>
 
         </div>

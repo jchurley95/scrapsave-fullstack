@@ -23,6 +23,7 @@ class PublicProjectItem extends Component {
     return (
       <div className="ProjectContainer" style={projectContainerStyle}>
         <h2>Project: {this.props.project.name} </h2>
+        <hr />
         <div>Sections: 
           <div>
             {this.props.project.sections.map((section, i) => {

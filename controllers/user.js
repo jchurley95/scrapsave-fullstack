@@ -40,7 +40,6 @@ router.post("/:userId/project", (req, res) => {
       console.log("New Project is: " + newProject);
       user.projects.push(newProject);
       user.save();
-      
     })
 })
 
@@ -81,8 +80,11 @@ router.put('/:userId/project/:projectId', (req, res) => {
   const userIdToUpdate = req.params.userId;
   const projectIdToUpdate = req.params.projectId;
   const infoToUpdate = req.body;
-  User.find
-  Project.findByIdAndUpdate(projectIdToUpdate, infoToUpdate, { new: true })
+  User.findById(userIdToUpdate).then((user) => {
+    Project.find(projectIdToUpdate)
+    .then((project) => {
+      res.json(project);
+    }) 
     .then(() => {
       res.send("Updated Successfully");
     })
@@ -90,6 +92,8 @@ router.put('/:userId/project/:projectId', (req, res) => {
       console.log(`Project with ID of ${projectIdToUpdate} failed to update!`)
       console.log(error);
     })
+  })
+  
 })
 
 //EDIT USER's PROJECT

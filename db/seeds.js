@@ -73,10 +73,10 @@ User.remove({}, (err) => console.log(err));
     const outdoorTableProject = new Project ({
         name: 'Outdoor Table',
         imageURL: './images/outdoorTable', // Edit once the real image is in the images file
-        sections: [tableTopSection, tableLegsSection]
+        sections: [tableLegsSection, tableTopSection],
+        projectList: [12, 24, 24, 24, 24, 24, 45, 34, 45],
+        stockLength: 10
     });
-    // END JCHurley95 Project 1
-    // START JCHurley95 Project 2
             // SECTION 1 CHAIR SEAT PIECES
             const chairSeatPiece1 = new Piece ({
                 name: 'Chair Seat 1',
@@ -111,7 +111,9 @@ User.remove({}, (err) => console.log(err));
     const outdoorChairProject = new Project ({
         name: 'Outdoor Chair',
         imageURL: './images/outdoorTable', // Edit once the real image is in the images file
-        sections: [chairSeatSection]
+        sections: [chairSeatSection],
+        stockLength: 10,
+        projectList: [12, 24, 24, 24, 24, 24, 45, 34, 45]
     });
     //END JCHurley95 Project 2
 const JHurleyUser = new User ({
@@ -202,7 +204,10 @@ JHurleyUser.save().then(() => console.log("JHurleyUser Saved!"));
     const outdoorTableProject_ = new Project ({
         name: 'Outdoor Table',
         imageURL: './images/outdoorTable', // Edit once the real image is in the images file
-        sections: [tableTopSection_, tableLegsSection_]
+        sections: [tableTopSection_, tableLegsSection_],
+        projectList: [12, 24, 24, 24, 24, 24, 45, 34, 45],
+        stockLength: 10
+    
     });
     // END RonSwanson Project 1
 

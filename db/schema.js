@@ -33,6 +33,9 @@ const projectSchema = new Schema({
     sections: [sectionSchema],
     projectCost: Number,
     totalStockBoardNeededThisProject: Number,
+    stockMaterial: String,
+    stockLength: Number,
+    projectList: [Number],
     created_at: Date,
     updated_at: Date
 });
