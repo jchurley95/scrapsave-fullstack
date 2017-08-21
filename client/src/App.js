@@ -22,11 +22,25 @@ class App extends Component {
     super();
 
     this.state = {
-      currentUserId: '5994a42eb4c6db059a05cd46',
+      currentUserId: this._getCurrentUser,
       users: [],
       projects: []
     }
   }
+
+  _getCurrentUser = () => {
+    axios.get(`/api/user/`)
+      .then((res) => {
+        const users = res.data;
+        const currentUserId = users.map((user) => {
+          if (user.username === 'JCHurley95') {
+            return user._id
+          }
+        });
+        return currentUserId;
+      }
+    )};
+
 
   // User logs in, grabs that user's id, sets that id equal to currentUserId
   // Maybe make const components for the route components that help pass through currentUserId
@@ -36,6 +50,7 @@ class App extends Component {
       height: '50px',
       width: '50px'
     }
+    
     return (
       <div className="App">
           <Router>
@@ -45,7 +60,7 @@ class App extends Component {
                 <img style={iconStyle} src={HomeIcon} />HOME 
               </Link>   
               <h1>ScrapSave</h1> 
-              <Link to={`/user/${this.state.currentUserId}`}>
+              <Link to={`/user/${this._getCurrentUser}`}>
                 <img style={iconStyle} src={BuildIcon} />MY DIY
               </Link>
             </div>
